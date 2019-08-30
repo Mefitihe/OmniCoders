@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">OmniCoders</string>
+    <string name="logo">Welcome to OmniCoders</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="log_in">Log in</string>
+    <string name="text_acc">Don\'t have an account?</string>
+    <string name="signup">Sign up</string>
+
+</resources>
