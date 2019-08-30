@@ -1,5 +1,6 @@
 package com.omnicoders.omnicoders;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,45 +11,46 @@ import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
-    //Declare widget variables
-    Button btnLogin, btnSignUp;
-    EditText edtUserName, edtPassword;
-    //Member variables that holds demy username and password;
+    //widget varibales
+    Button btnLogin, btnSignup;
+    EditText edtUsername, edtPassword;
     String mUsername, mPassword;
+    Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        //view widgets by id
+        mContext = getApplicationContext();
         btnLogin = findViewById(R.id.btnLogin);
-        btnSignUp = findViewById(R.id.btnSignup);
+        btnSignup = findViewById(R.id.btnSignup);
 
-        edtUserName = findViewById(R.id.edtUsername);
+        edtUsername = findViewById(R.id.edtUsername);
         edtPassword = findViewById(R.id.edtPassword);
 
         login();
+
     }
 
-    //method button login()
-
     private void login(){
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mUsername = edtUserName.getText().toString();
+                mUsername = edtUsername.getText().toString();
                 mPassword = edtPassword.getText().toString();
 
-                if(mUsername.equals("omni") && mPassword.equals("1234")){
-                    //navigate to home
-                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                    startActivity(intent);
+                if(mPassword.equals("1234") && mUsername.equals("omni")){
 
-                }else{
-                    //Toast message
-                    Toast.makeText(LoginActivity.this, "Invalid Username or Password.", Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(i);
                 }
+                else{
+                    Toast.makeText(mContext, "Invalid username or Password", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
+
+
 }
