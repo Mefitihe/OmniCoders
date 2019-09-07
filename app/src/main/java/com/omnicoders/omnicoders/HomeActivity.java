@@ -5,19 +5,51 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+
+import com.omnicoders.omnicoders.Utils.Utils;
 
 public class HomeActivity extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Called the theme before the layout view
+        Utils.onAppCompatActivityCreateSetTheme(this);
         setContentView(R.layout.activity_home);
+
+        //ArrayList
+
+        String[] myDataset = {"Java for Android", "Android development for beginners",
+                "Advanced Android Development", "Web Development",
+                "Scratch Programming for beginners", "Python for beginners", "Advanced Python"};
+
+
+        recyclerView = findViewById(R.id.rv);
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        recyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        // specify an adapter (see also next example)
+        mAdapter = new MyAdapter(myDataset);
+        recyclerView.setAdapter(mAdapter);
+
     }
 
     @Override
@@ -48,7 +80,11 @@ public class HomeActivity extends AppCompatActivity {
 
             //Toast.makeText(getApplicationContext(), "ChangePass Selected", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.theme) {
-            Toast.makeText(getApplicationContext(), "Theme Selected", Toast.LENGTH_SHORT).show();
+            //Call activity as Dialog
+            Intent theme = new Intent(HomeActivity.this, ThemeActivity.class);
+            startActivity(theme);
+
+            //Toast.makeText(getApplicationContext(), "Theme Selected", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.logout) {
             Intent i = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(i);
@@ -68,23 +104,23 @@ public class HomeActivity extends AppCompatActivity {
         LayoutInflater inflater = this.getLayoutInflater();
         final View dialgogView = inflater.inflate(R.layout.activity_change_pass, null);
         builder.setView(dialgogView);
-        //3. Create alert dialog
-        final AlertDialog dialog = builder.create();
-        //4. add action buttons
+
+        //3. add action buttons
         builder.setPositiveButton(R.string.change, new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+            public void onClick(DialogInterface dialog, int whichButton) {
                 //TODO add some code here
             }
         });
 
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+            public void onClick(DialogInterface dialog, int wichButton) {
                 dialog.dismiss();
             }
         });
-
+        //4. Create alert dialog
+        final AlertDialog dialog = builder.create();
         //5.show dialog
         dialog.show();
 

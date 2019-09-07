@@ -8,4 +8,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Daylight theme -->
+    <style name="DayLight" parent="Theme.AppCompat.DayNight">
+        <item name="android:textColor">#00FF00</item>
+
+    </style>
+
+    <!-- DayNight mode theme -->
+    <style name="DayNight" parent="Theme.AppCompat.DayNight">
+        <item name="android:textColor">#0000F0</item>
+
+    </style>
+
 </resources>
