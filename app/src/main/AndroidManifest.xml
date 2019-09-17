@@ -9,8 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SignupActivity"></activity>
-        <activity android:name=".HomeActivity"></activity>
+        <activity
+            android:name=".DrawerMenuActivity"
+            android:label="@string/title_activity_drawer_menu"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".SignupActivity" />
+        <activity android:name=".HomeActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +24,7 @@
         </activity> <!-- TODO here added a Dialog theme to call an activity as a dialog -->
         <activity
             android:name=".ThemeActivity"
-            android:theme="@style/Theme.AppCompat.Dialog"></activity>
+            android:theme="@style/Theme.AppCompat.Dialog" />
     </application>
 
 </manifest>

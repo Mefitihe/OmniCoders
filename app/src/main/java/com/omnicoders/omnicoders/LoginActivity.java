@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
@@ -26,16 +27,23 @@ public class LoginActivity extends AppCompatActivity {
     private static final int MY_NOTIFICATION_ID = 1;
     final String CHANNEL_ID = "CHANNEL_ID";
 
+    SharedPreferences sharedPreferences;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         mContext = getApplicationContext();
         btnLogin = findViewById(R.id.btnLogin);
         btnSignup = findViewById(R.id.btnSignup);
 
         edtUsername = findViewById(R.id.edtUsername);
         edtPassword = findViewById(R.id.edtPassword);
+
+        sharedPreferences = getSharedPreferences("userPref", MODE_PRIVATE);
+
 
         createNotificationChannel();
         //calling login() inside onCreate()
@@ -54,6 +62,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login(){
+        final String uname = sharedPreferences.getString("email", null);
+        final String pass = sharedPreferences.getString("password", null);
+        final String name = sharedPreferences.getString("name", null);
+        final String level = sharedPreferences.getString("level", null);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,12 +73,17 @@ public class LoginActivity extends AppCompatActivity {
                 mUsername = edtUsername.getText().toString();
                 mPassword = edtPassword.getText().toString();
 
-                if(mPassword.equals("1234") && mUsername.equals("omni")){
-
-                    Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+                if (mPassword.trim().equals(uname) && mUsername.trim().equals(pass)) {
+                    //TODO Change HomeActivity to DrawerMenuActivity
+                    Intent i = new Intent(LoginActivity.this, DrawerMenuActivity.class);
+                    //pass name to the next Activity
+                    i.putExtra("name", name);
+                    i.putExtra("level", level);
+                    i.putExtra("email", uname);
                     startActivity(i);
-
+                    finish();
                     //calling statusNotification() inside login button
+
                     statusNotification();
 
                 }
