@@ -1,7 +1,9 @@
 package com.omnicoders.omnicoders;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +23,9 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +33,13 @@ public class HomeActivity extends AppCompatActivity {
         //Called the theme before the layout view
         Utils.onAppCompatActivityCreateSetTheme(this);
         setContentView(R.layout.activity_home);
+
+        //get passed data from LoginActivity class
+
+        intent = getIntent();
+        String name = intent.getStringExtra("name");
+        String email = intent.getStringExtra("email");
+        String level = intent.getStringExtra("level");
 
         //ArrayList
 
@@ -49,6 +61,10 @@ public class HomeActivity extends AppCompatActivity {
         // specify an adapter (see also next example)
         mAdapter = new MyAdapter(myDataset);
         recyclerView.setAdapter(mAdapter);
+
+        //get sharedPreferences
+        sharedPreferences = getSharedPreferences("userPref", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
     }
 
@@ -74,11 +90,6 @@ public class HomeActivity extends AppCompatActivity {
             showChangeLangDialog();
 
             //Toast.makeText(getApplicationContext(), "Language Selected", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.changePass) {
-            //Called changePassword()
-            changePassword();
-
-            //Toast.makeText(getApplicationContext(), "ChangePass Selected", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.theme) {
             //Call activity as Dialog
             Intent theme = new Intent(HomeActivity.this, ThemeActivity.class);
@@ -91,39 +102,6 @@ public class HomeActivity extends AppCompatActivity {
             System.exit(0);
         }
         return true;
-    }
-
-    /*
-     * a method changePassword() to show password change alert dialog
-     */
-    private void changePassword() {
-
-        //1. Build alertdialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
-        // 2. Inflate custom layout
-        LayoutInflater inflater = this.getLayoutInflater();
-        final View dialgogView = inflater.inflate(R.layout.activity_change_pass, null);
-        builder.setView(dialgogView);
-
-        //3. add action buttons
-        builder.setPositiveButton(R.string.change, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-                //TODO add some code here
-            }
-        });
-
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int wichButton) {
-                dialog.dismiss();
-            }
-        });
-        //4. Create alert dialog
-        final AlertDialog dialog = builder.create();
-        //5.show dialog
-        dialog.show();
-
     }
 
     /**

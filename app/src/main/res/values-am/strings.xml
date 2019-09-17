@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OmniCoders</string>
+    <string name="language_option">የቛንቛ አማራጭ</string>
+    <string name="change_language">ቛንቛ ቀይር</string>
+    <string name="change">ቀይር</string>
+    <string name="cancel">ተው</string>
+    <string name="amharic">አማርኛ</string>
+</resources>

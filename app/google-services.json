@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1081455219109",
+    "firebase_url": "https://omnicoders-ccf9a.firebaseio.com",
+    "project_id": "omnicoders-ccf9a",
+    "storage_bucket": "omnicoders-ccf9a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081455219109:android:ceee75e9cb0df0764ed84c",
+        "android_client_info": {
+          "package_name": "com.omnicoders.omnicoders"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081455219109-p5nrdsif4eigbo1p43joo88m6vgckj1h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.omnicoders.omnicoders",
+            "certificate_hash": "23292b2ee98c7a8f0951c135f34984c1089fcf64"
+          }
+        },
+        {
+          "client_id": "1081455219109-433pn89ne9drhr6pbf2mc66s1a0hk0lg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPrhKbWkLV0aO1KYMW96UA5ZQsNQciOv8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1081455219109-433pn89ne9drhr6pbf2mc66s1a0hk0lg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
