@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (mPassword.equals(uname) && mUsername.equals(pass)) {
                         //TODO Change HomeActivity to NavigationHomeActivity
-                        Intent i = new Intent(LoginActivity.this, NavigationHomeActivity.class);
+                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
                         //pass name to the next Activity
                         i.putExtra("name", name);
                         i.putExtra("level", level);
